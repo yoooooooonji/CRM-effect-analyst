@@ -1,0 +1,118 @@
+---
+title: "crm effect"
+author: "노윤지"
+date: "2023-07-06"
+output:
+  html_document:
+    margin:
+      top: 0cm
+      bottom: 0cm
+      left: 0cm
+      right: 0cm
+---
+
+```{r env, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warnings= FALSE)
+library(tidyverse)
+library(knitr)
+library(gtsummary)
+library(labelled)
+library(summarytools)
+library(kableExtra)
+library(magrittr)
+library(pander)
+```
+
+```{r,warning = FALSE, message = FALSE}
+source("/Users/yj.noh/Documents/GitHub/CRM effect analyst/crm_effect_analyst.R")
+```
+
+###  **[Table 1.1] **Summary of crm effect analysts** {.tabset}
+#### ***[CRM 1]***
+```{r, warning=FALSE, message=FALSE}
+crm1[c("group_name", "business_day", "total_dlvry","total_hour","total_fee","total_fee_reward","utr","fee_by_dlvry_reward","single_per","stod_per","cpo","ai_accept_per")]  %>% 
+tbl_strata(
+    strata = group_name,~.x  %>% 
+    tbl_summary(
+        by = business_day,
+        type = all_continuous() ~ "continuous2",
+              statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+              missing_text = "(Missing value)", 
+              digits = list(all_continuous() ~ c(1, 2), 
+                            all_categorical() ~ c(0, 1))) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### ***[CRM 2]***
+```{r, warning=FALSE, message=FALSE}
+crm2[c("group_name", "business_day", "total_dlvry","total_hour","total_fee","total_fee_reward","utr","fee_by_dlvry_reward","single_per","stod_per","cpo","ai_accept_per")]  %>% 
+tbl_strata(
+    strata = group_name,~.x  %>% 
+    tbl_summary(
+        by = business_day,
+        type = all_continuous() ~ "continuous2",
+              statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+              missing_text = "(Missing value)", 
+              digits = list(all_continuous() ~ c(1, 2), 
+                            all_categorical() ~ c(0, 1))) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+#### ***[CRM 3_A]***
+```{r, warning=FALSE, message=FALSE}
+crm3_A[c("group_name", "business_day", "total_dlvry","total_hour","total_fee","total_fee_reward","utr","fee_by_dlvry_reward","single_per","stod_per","cpo","ai_accept_per")]  %>% 
+tbl_strata(
+    strata = group_name,~.x  %>% 
+    tbl_summary(
+        by = business_day,
+        type = all_continuous() ~ "continuous2",
+              statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+              missing_text = "(Missing value)", 
+              digits = list(all_continuous() ~ c(1, 2), 
+                            all_categorical() ~ c(0, 1))) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### ***[CRM 3_B]***
+```{r, warning=FALSE, message=FALSE}
+crm3_B[c("group_name", "business_day", "total_dlvry","total_hour","total_fee","total_fee_reward","utr","fee_by_dlvry_reward","single_per","stod_per","cpo","ai_accept_per")]  %>% 
+tbl_strata(
+    strata = group_name,~.x  %>% 
+    tbl_summary(
+        by = business_day,
+        type = all_continuous() ~ "continuous2",
+              statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+              missing_text = "(Missing value)", 
+              digits = list(all_continuous() ~ c(1, 2), 
+                            all_categorical() ~ c(0, 1))) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### ***[CRM 3_C]***
+```{r, warning=FALSE, message=FALSE}
+crm3_C[c("group_name", "business_day", "total_dlvry","total_hour","total_fee","total_fee_reward","utr","fee_by_dlvry_reward","single_per","stod_per","cpo","ai_accept_per")]  %>% 
+tbl_strata(
+    strata = group_name,~.x  %>% 
+    tbl_summary(
+        by = business_day,
+        type = all_continuous() ~ "continuous2",
+              statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+              missing_text = "(Missing value)", 
+              digits = list(all_continuous() ~ c(1, 2), 
+                            all_categorical() ~ c(0, 1))) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
