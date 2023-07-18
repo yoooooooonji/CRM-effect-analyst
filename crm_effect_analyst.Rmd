@@ -24,7 +24,7 @@ library(pander)
 ```
 
 ```{r,warning = FALSE, message = FALSE}
-source("/Users/yj.noh/Documents/GitHub/CRM effect analyst/crm_effect_analyst.R")
+source("/Users/yj.noh/Documents/GitHub/CRM effect analyst/crm_target_rider_analysis.R")
 ```
 
 ###  **[Table 1.1] **Summary of crm effect analysts** {.tabset}
