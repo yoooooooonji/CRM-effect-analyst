@@ -57,6 +57,7 @@ df <- df  %>% mutate(is_logon = ifelse(first_logon >= '2023-11-24 10:30', 1, 0))
 df <- df  %>% mutate(is_dlvry = ifelse(first_dlvry >= '2023-11-24 10:30', 1, 0))
 
 write.csv(df, "app_push_filtered.csv", fileEncoding= "utf-8")
+
 colSums(is.na(df))
 df$is_logon[is.na(df$is_logon)] <- 0
 df$is_dlvry[is.na(df$is_dlvry)] <- 0
