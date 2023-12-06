@@ -88,3 +88,22 @@ tbl_summary(
   add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
   bold_labels()
 
+
+data <- read_excel("/Users/yj.noh/Desktop/total_set.xlsx")
+head(data)
+
+data[c("cnt_ord", "sum_fee", "not_period", "group")] %>% 
+tbl_summary(
+    by = group,
+   type = list(
+    cnt_ord ~ "continuous2",
+    sum_fee ~ "continuous2",
+    not_period ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
