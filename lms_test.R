@@ -107,3 +107,63 @@ tbl_summary(
   add_overall() %>%
   add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
   bold_labels()
+
+
+##########################################################################################################################################################
+# 12/6 LMS 분석
+rider = read_excel("/Users/yj.noh/Desktop/total_set.xlsx")
+
+table(rider$group) #5222, 5184
+dim(rider)
+
+dlvry = read_excel("/Users/yj.noh/Desktop/lms_data.xlsx")
+head(dlvry)
+
+data = left_join(rider[c("brms_rider_id", "cnt_ord", "sum_fee", "not_period", "group")], dlvry, by = "brms_rider_id")
+dim(data)
+table(data$group)
+
+colSums(is.na(data)) # 9762, 10242 na 
+
+data$first_logon <- as.POSIXlt(data$first_logon, format = '%Y-%m-%d %H:%M')
+data$first_dlvry <- as.POSIXlt(data$first_dlvry, format = '%Y-%m-%d %H:%M')
+
+data <- data %>% mutate(is_logon = ifelse(first_logon >= '2023-12-06 11:00', 1, 0),
+                        is_dlvry = ifelse(first_dlvry >= '2023-12-06 11:00', 1,0))
+
+
+data$is_logon[is.na(data$is_logon)] <- 0
+data$is_dlvry[is.na(data$is_dlvry)] <- 0
+data$ord_cnt[is.na(data$ord_cnt)] <- 0
+data$not_period <- as.numeric(data$not_period)
+
+summary(data$not_period)
+
+# 28~56 -> 28~35, 36~42, 43~49, 50~56 
+data <- data %>% mutate(churn_group = case_when(
+                            not_period <= 35 ~ "4",
+                            not_period <= 42 ~ "5",
+                            not_period <= 49 ~ "6",
+                            TRUE ~ "7"
+                        ))
+
+table(data$churn_group)
+
+
+data [c("group", "is_logon", "is_dlvry", "ord_cnt", "churn_group")] %>% 
+tbl_strata (
+  strata = churn_group,
+  ~.x  %>% 
+tbl_summary(
+    by = group,
+   type = list(
+    ord_cnt ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
