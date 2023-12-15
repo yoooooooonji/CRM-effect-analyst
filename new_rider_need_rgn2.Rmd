@@ -1,0 +1,456 @@
+---
+title: "라이더 비율 확인"
+
+author: "노윤지"
+date: "2023-12-11"
+output: html_document
+---
+
+```{r env, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warnings= FALSE)
+library(tidyverse)
+library(knitr)
+library(gtsummary)
+library(labelled)
+library(summarytools)
+library(kableExtra)
+library(magrittr)
+library(dplyr)
+
+```
+
+```{r,warning = FALSE, message = FALSE}
+source("new_rider_need_rgn2.R")
+```
+
+```{r}
+theme_gtsummary_compact()
+```
+
+### **[Table 1] **지역별 비교분석** {.tabset}
+#### **[강원도]**
+```{r}
+df_강원도[c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[경기도]**
+```{r}
+df_경기도 [c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[경상남도]**
+```{r}
+df_경상남도 [c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[경상북도]**
+```{r}
+df_경상북도 [c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[광주광역시]**
+```{r}
+df_광주광역시 [c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[대구광역시]**
+```{r}
+df_대구광역시[c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[대전광역시]**
+```{r}
+df_대전광역시 [c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[부산광역시]**
+```{r}
+df_부산광역시 [c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[서울특별시]**
+```{r}
+df9 <- data %>%  dplyr::filter(rgn1_nm == '서울특별시')
+df9 [c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[세종특별자치시]**
+```{r}
+df_세종특별자치시 [c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[울산광역시]**
+```{r}
+df_울산광역시 [c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[인천광역시]**
+```{r}
+df12 <- data %>%  dplyr::filter(rgn1_nm == '인천광역시')
+df12 [c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[전라남도]**
+```{r}
+df_전라남도 [c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[전라북도]**
+```{r}
+df_전라북도[c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[제주특별자치도]**
+```{r}
+df_제주특별자치도[c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[충청남도]**
+```{r}
+df_충청남도[c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```
+
+#### **[충청북도]**
+```{r}
+df_충청북도[c("rgn1_nm", "rgn2_nm", "r_value", "new_rider_per", "old_rider_per", "r_value_new", "r_value_old", "is_restrict")] %>% 
+tbl_strata (
+  strata = rgn2_nm,
+  ~.x  %>% 
+tbl_summary(
+    by = is_restrict,
+   type = list(
+    r_value ~ "continuous2",
+    new_rider_per ~ "continuous2",
+    old_rider_per ~ "continuous2",
+    r_value_new ~ "continuous2",
+    r_value_old ~ "continuous2"
+   ),  
+    statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+    missing_text = "(Missing value)", 
+    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+  ) %>%
+  add_overall() %>%
+  add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+  bold_labels()
+)
+```

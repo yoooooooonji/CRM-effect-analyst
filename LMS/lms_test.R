@@ -167,3 +167,22 @@ tbl_summary(
   add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
   bold_labels()
 )
+
+
+
+d1 <- read_excel("/Users/yj.noh/Desktop/total_set.xlsx")
+d2 <- read_excel("/Users/yj.noh/Desktop/checking.xlsx")
+
+dim(d1)
+dim(d2)
+
+
+l1 <- d1  %>% filter(!d1$brms_rider_id %in% d2$brms_rider_id)
+l2 <- d2  %>% filter(d2$brms_rider_id %in% d1$brms_rider_id) 
+
+
+l1
+l2
+
+
+
