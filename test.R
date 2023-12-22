@@ -31,3 +31,8 @@ tbl_summary(
   add_overall() %>%
   add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
   bold_labels()
+
+today <- read_excel("/Users/yj.noh/Downloads/이탈위험군_대상자_추출_2023_12_15.xlsx") 
+yest <- read_excel("/Users/yj.noh/Downloads/이탈위험군_대상자_추출_2023_12_16.xlsx") 
+
+

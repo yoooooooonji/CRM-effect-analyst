@@ -12,8 +12,65 @@ ipak <-function(pkg){
 pkg <- c("readr", "dplyr", "tidytext", "tidyverse", "lubridate", "reshape2", "psych", "gtsummary", "readxl", "MASS", "MatchIt", "viridis") # nolint
 ipak(pkg)
 ##########################################################################################################################################################
-data <- read_excel("/Users/yj.noh/Desktop/new_rider_need_rgn2.xlsx")
+data <- read.csv("/Users/yj.noh/Desktop/part_peak_incubate.csv", fileEncoding = "cp949")
 head(data)
+
+# A/B 그룹 통계량
+data[c("avg_week_dlvry_cnt", "avg_week_day_cnt", "group_name", "group_final")] %>% 
+tbl_strata(
+  strata = group_name,
+  ~.x  %>% 
+tbl_summary(
+   by = group_final,
+   type = list(
+   avg_week_dlvry_cnt ~ "continuous2",
+   avg_week_day_cnt ~ "continuous2"
+  ),  
+   statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+   missing_text = "(Missing value)", 
+   digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+ ) %>%
+ add_overall() %>%
+ add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+ bold_labels()
+)
+
+
+# 세부그룹 분리 _A 
+group_A = data  %>% filter(group_name == 'A')
+
+group_A[c( "avg_week_day_cnt", "group_final")] %>% 
+tbl_summary (
+  by = group_final,
+   type = list(
+   avg_week_day_cnt ~ "continuous2"
+  ),  
+   statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+   missing_text = "(Missing value)", 
+   digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+ ) %>%
+ add_overall() %>%
+ add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+ bold_labels()
+
+# 세부그룹 분리 _B 
+group_B = data  %>% filter(group_name == 'B')
+
+group_B[c( "avg_week_dlvry_cnt", "group_final")] %>% 
+tbl_summary (
+  by = group_final,
+   type = list(
+   avg_week_dlvry_cnt ~ "continuous2"
+  ),  
+   statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+   missing_text = "(Missing value)", 
+   digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
+ ) %>%
+ add_overall() %>%
+ add_p(pvalue_fun = ~style_pvalue(., digits = 3)) %>%
+ bold_labels()
+
+
 #str(data)
 #data <- data %>% rename("rgn1_nm" = "rgn1_nm::filter")
 
