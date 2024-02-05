@@ -45,7 +45,7 @@ tbl_summary (
    type = list(
    avg_week_day_cnt ~ "continuous2"
   ),  
-   statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+   statistic = all_continuous() ~ c("{mean} ({sd})", "{median}" ,  "{min}, {max}"),
    missing_text = "(Missing value)", 
    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
  ) %>%
@@ -62,7 +62,7 @@ tbl_summary (
    type = list(
    avg_week_dlvry_cnt ~ "continuous2"
   ),  
-   statistic = all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"),
+   statistic = all_continuous() ~ c("{mean} ({sd})", "{median}" ,  "{min}, {max}"),
    missing_text = "(Missing value)", 
    digits = list(all_continuous() ~ 2, all_categorical() ~ c(0, 1))
  ) %>%
